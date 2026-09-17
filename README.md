@@ -41,26 +41,7 @@ once you have answered so you can see what is still outstanding.
 
 ---
 
-## Email
 
-In development, messages print to the terminal instead of sending — useful for testing.
-
-To send for real, fill these in `.env`:
-
-```
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USE_TLS=True
-EMAIL_HOST_USER=miriammaiko368@gmail.com
-EMAIL_HOST_PASSWORD=your-gmail-app-password
-```
-
-Gmail needs an **app password**, not your normal password. Turn on 2-step verification on the
-Google account, then create one at myaccount.google.com → Security → App passwords.
-
-Every enquiry is saved to the database as well, so nothing is lost if an email fails.
-
----
 
 ## Changing the contact details
 
