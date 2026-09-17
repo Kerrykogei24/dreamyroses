@@ -104,7 +104,7 @@ BRAND = {
     "social_handle": "@dreamyroses",
     "instagram": "https://instagram.com/dreamyroses",
     "instagram_label": "Personalized Colouring Book / Dreamy Roses",
-    "pinterest": "https://pinterest.com/dreamyroses",
+    "pinterest": "https://pinterest.com/miriammaiko368",
     "pinterest_label": "Personalized Coloring Book / Dreamy Roses",
     "location": "Nairobi, Kenya",
 }
