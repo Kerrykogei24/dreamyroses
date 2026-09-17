@@ -74,3 +74,4 @@ python-dotenv==1.0.1
 whitenoise==6.6.0
 gunicorn==22.0.0
 setuptools>=69
+wheel
