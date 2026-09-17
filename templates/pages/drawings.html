@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Drawings — Dreamy Roses coloring pages{% endblock %}
+{% block description %}A gallery of personalised coloring pages drawn by Miriam Maiko from customers' own photographs.{% endblock %}
+
+{% block content %}
+<section class="page-head">
+  <div class="shell">
+    <p class="hero-kicker">Drawings</p>
+    <h1>Pages drawn from other people's photographs.</h1>
+    <p class="page-lede">Every one of these started as a picture someone sent in. Yours would sit right beside them.</p>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="shell">
+    <nav class="filters" aria-label="Filter drawings by style">
+      <a href="{% url 'studio:drawings' %}" {% if not active_style %}class="on"{% endif %}>Everything</a>
+      {% for value, label in styles %}
+      <a href="?style={{ value }}" {% if active_style == value %}class="on"{% endif %}>{{ label }}</a>
+      {% endfor %}
+    </nav>
+
+    {% if pages %}
+    <div class="sheet-grid">
+      {% for page in pages %}
+      <figure class="sheet">
+        <img src="{{ page.image.url }}" alt="{{ page.title }}" loading="lazy">
+        <figcaption>
+          <span class="sheet-title">{{ page.title }}</span>
+          <span class="sheet-style">{{ page.get_style_display }}</span>
+          {% if page.caption %}<span class="sheet-caption">{{ page.caption }}</span>{% endif %}
+        </figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+    {% elif total %}
+    <p class="empty">Nothing in this style yet. <a href="{% url 'studio:drawings' %}">See every drawing</a> instead.</p>
+    {% else %}
+    <p class="empty">The gallery is empty. Add drawings in the shop admin and they appear here.</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="closing">
+  <div class="shell closing-inner">
+    <h2>Want your own photo drawn like this?</h2>
+    <p>Send it over and Miriam will tell you what it would take.</p>
+    <a class="button button-light" href="{% url 'studio:contact' %}">Send a photo</a>
+  </div>
+</section>
+{% endblock %}

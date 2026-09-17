@@ -1,0 +1,74 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ brand.name }}{% endblock %}</title>
+<meta name="description" content="{% block description %}Personalised coloring books and coloring pages hand-made from your own photos by Miriam Maiko in Nairobi.{% endblock %}">
+<link rel="icon" href="{% static 'img/logo.jpg' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/site.css' %}">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="shell masthead-inner">
+    <a class="mark" href="{% url 'studio:home' %}">
+      <span class="mark-monogram">DR</span>
+      <span class="mark-name">Dreamy Roses</span>
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="sitenav">Menu</button>
+    <nav id="sitenav" class="nav">
+      <a href="{% url 'studio:home' %}" {% if request.resolver_match.url_name == 'home' %}aria-current="page"{% endif %}>Home</a>
+      <a href="{% url 'studio:about' %}" {% if request.resolver_match.url_name == 'about' %}aria-current="page"{% endif %}>About us</a>
+      <a href="{% url 'studio:drawings' %}" {% if request.resolver_match.url_name == 'drawings' %}aria-current="page"{% endif %}>Drawings</a>
+      <a href="{% url 'studio:contact' %}" {% if request.resolver_match.url_name == 'contact' %}aria-current="page"{% endif %}>Contact</a>
+    </nav>
+  </div>
+</header>
+
+{% if messages %}
+<div class="shell">
+  {% for message in messages %}
+  <p class="flash flash-{{ message.tags }}" role="status">{{ message }}</p>
+  {% endfor %}
+</div>
+{% endif %}
+
+<main id="main">{% block content %}{% endblock %}</main>
+
+<footer class="footer">
+  <div class="shell footer-inner">
+    <div class="footer-brand">
+      <img src="{% static 'img/wordmark_dark.jpg' %}" alt="{{ brand.name }}" width="360" height="230">
+      <p class="footer-tagline">{{ brand.tagline }}</p>
+    </div>
+    <div class="footer-col">
+      <h2>Talk to Miriam</h2>
+      <p><a href="mailto:{{ brand.email }}">{{ brand.email }}</a></p>
+      <p><a href="{{ brand.shop_url }}">Shop the digital books</a></p>
+      <p class="footer-place">{{ brand.location }}</p>
+    </div>
+    <div class="footer-col">
+      <h2>Follow</h2>
+      <p><a href="{{ brand.instagram }}">Instagram &middot; {{ brand.instagram_label }}</a></p>
+      <p><a href="{{ brand.pinterest }}">Pinterest &middot; {{ brand.pinterest_label }}</a></p>
+      <p><a href="{{ brand.shop_url }}">Payhip &middot; {{ brand.shop_label }}</a></p>
+    </div>
+    <div class="footer-col">
+      <h2>Pages</h2>
+      <p><a href="{% url 'studio:home' %}">Home</a></p>
+      <p><a href="{% url 'studio:about' %}">About us</a></p>
+      <p><a href="{% url 'studio:drawings' %}">Drawings</a></p>
+      <p><a href="{% url 'studio:contact' %}">Contact</a></p>
+    </div>
+  </div>
+  <p class="colophon">&copy; {% now "Y" %} {{ brand.name }} &middot; Drawn by {{ brand.owner }}</p>
+</footer>
+
+<script src="{% static 'js/site.js' %}" defer></script>
+</body>
+</html>

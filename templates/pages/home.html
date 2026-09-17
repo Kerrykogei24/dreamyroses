@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dreamy Roses — personalised coloring books from your photos{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="shell hero-grid">
+    <div class="hero-words">
+      <p class="hero-kicker">Personalised coloring books, drawn in Nairobi</p>
+      <h1>Send a photo. Get back a page waiting to be coloured in.</h1>
+      <p class="hero-lede">
+        Miriam turns your own pictures — a graduation, a road trip, two friends pulling faces —
+        into clean line drawings, bound into a coloring book that is only about your people.
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="{% url 'studio:contact' %}">Order your book</a>
+        <a class="button button-quiet" href="{% url 'studio:drawings' %}">See the drawings</a>
+      </div>
+    </div>
+
+    <figure class="reveal" id="reveal">
+      <div class="reveal-frame">
+        <img class="reveal-base" src="{% static 'img/hero_color.jpg' %}" alt="A coloring page filled in with pastel colours" width="768" height="1364">
+        <div class="reveal-top" id="revealTop">
+          <img src="{% static 'img/hero_line.jpg' %}" alt="The same page as clean black line art, ready to colour" width="768" height="1364">
+        </div>
+        <input type="range" min="0" max="100" value="58" id="revealSlider" aria-label="Drag to colour the page in">
+        <span class="reveal-handle" id="revealHandle" aria-hidden="true"></span>
+      </div>
+      <figcaption>Drag across the page to colour it in.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="steps">
+  <div class="shell">
+    <h2 class="section-head">How your book is made</h2>
+    <ol class="step-list">
+      <li>
+        <span class="step-num">1</span>
+        <h3>You send the photos</h3>
+        <p>Email the pictures you love. Anything from one page to a full book of memories.</p>
+      </li>
+      <li>
+        <span class="step-num">2</span>
+        <h3>Miriam draws them</h3>
+        <p>Each photo is redrawn by hand as clean line art, with the faces and details kept recognisable.</p>
+      </li>
+      <li>
+        <span class="step-num">3</span>
+        <h3>You colour it in</h3>
+        <p>Your book arrives as a print-ready PDF. Print it at home, or colour it on a tablet.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="gallery-preview">
+  <div class="shell">
+    <div class="section-bar">
+      <h2 class="section-head">Recent pages</h2>
+      <a class="quiet-link" href="{% url 'studio:drawings' %}">All drawings</a>
+    </div>
+    {% if featured %}
+    <div class="sheet-grid">
+      {% for page in featured %}
+      <figure class="sheet">
+        <img src="{{ page.image.url }}" alt="{{ page.title }}" loading="lazy">
+        <figcaption>
+          <span class="sheet-title">{{ page.title }}</span>
+          {% if page.caption %}<span class="sheet-caption">{{ page.caption }}</span>{% endif %}
+        </figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="empty">No pages published yet. Add them in the shop admin and they will show here.</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="offer">
+  <div class="shell offer-grid">
+    <div>
+      <h2 class="section-head">What you can order</h2>
+      <dl class="offer-list">
+        <dt>A personalised book</dt>
+        <dd>Ten to thirty pages built from your own photos. Made for birthdays, weddings and farewells.</dd>
+        <dt>A single page</dt>
+        <dd>One photo, one drawing. The easiest way to try the studio out.</dd>
+        <dt>Anime and couple sets</dt>
+        <dd>Ready-made PDF sets in the Dreamy Roses style, <a href="{{ brand.shop_url }}">downloadable from the shop</a> straight away.</dd>
+        <dt>Event and bulk orders</dt>
+        <dd>Matching pages for a class, a party table or a company gift.</dd>
+      </dl>
+    </div>
+    <aside class="offer-note">
+      <h3>Every order includes</h3>
+      <p>A4 print-ready PDF at 300 dpi, a digital copy for tablets, and one round of changes if a drawing needs adjusting.</p>
+      <a class="button" href="{% url 'studio:contact' %}">Ask for a quote</a>
+      <p class="offer-shop"><a href="{{ brand.shop_url }}">Or browse the ready-made sets on Payhip</a></p>
+    </aside>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="shell closing-inner">
+    <h2>Made to belong to someone in particular.</h2>
+    <p>Tell Miriam who this one is for.</p>
+    <a class="button button-light" href="{% url 'studio:contact' %}">Start your order</a>
+  </div>
+</section>
+{% endblock %}

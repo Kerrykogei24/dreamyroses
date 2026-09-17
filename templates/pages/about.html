@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}About Dreamy Roses — Miriam Maiko{% endblock %}
+{% block description %}Dreamy Roses is a one-woman studio in Nairobi. Miriam Maiko draws personalised coloring books from photographs.{% endblock %}
+
+{% block content %}
+<section class="page-head">
+  <div class="shell">
+    <p class="hero-kicker">About us</p>
+    <h1>A one-woman studio for pages that belong to somebody.</h1>
+  </div>
+</section>
+
+<section class="about">
+  <div class="shell about-grid">
+    <div class="about-body">
+      <p class="lede">
+        Dreamy Roses is run by Miriam Maiko from Nairobi. It started with one drawing
+        made as a gift, and the look on the face of the person who opened it.
+      </p>
+      <p>
+        Most coloring books are full of strangers. The pages here are not. Miriam works from
+        the photographs you already have on your phone — the graduation gown, the back seat of
+        the car, the afternoon by the pool — and redraws each one as line art clean enough
+        to colour and close enough to recognise.
+      </p>
+      <p>
+        Every page is drawn to order. Nothing is traced from stock, and nothing is resold to
+        anyone else. When your book is done, the drawings are yours.
+      </p>
+      <p>
+        Alongside the personalised work, the studio publishes ready-made digital sets in the
+        Dreamy Roses style — anime portraits, couples, florals — for anyone who just wants
+        something beautiful to sit down with.
+      </p>
+      <a class="button" href="{% url 'studio:contact' %}">Work with Miriam</a>
+    </div>
+
+    <aside class="about-card">
+      <img src="{% static 'img/logo.jpg' %}" alt="The Dreamy Roses rose and monogram" width="760" height="600" loading="lazy">
+      <p class="about-motto">{{ brand.tagline }}</p>
+      <dl class="fact-list">
+        <dt>Studio</dt><dd>{{ brand.location }}</dd>
+        <dt>Drawn by</dt><dd>{{ brand.owner }}</dd>
+        <dt>Usual turnaround</dt><dd>3 to 7 days, depending on page count</dd>
+        <dt>Delivered as</dt><dd>Print-ready A4 PDF, 300 dpi</dd>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<section class="values">
+  <div class="shell">
+    <h2 class="section-head">How the studio works</h2>
+    <div class="value-grid">
+      <div>
+        <h3>Drawn, not filtered</h3>
+        <p>Each page is built by hand so the lines stay clean and open — wide enough for crayons, fine enough for pencils.</p>
+      </div>
+      <div>
+        <h3>Your photos stay yours</h3>
+        <p>Pictures you send are used for your order only, and are never published without your say-so.</p>
+      </div>
+      <div>
+        <h3>Changes are part of it</h3>
+        <p>If a drawing misses something, say so. One round of changes is included in every order.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
